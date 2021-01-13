@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'macOS 10.13'
+  vmImage: 'macOS-10.14'
 
 steps:
 - task: Xcode@5
@@ -10,7 +10,7 @@ steps:
     scheme: 'HelloiOS'
     configuration: 'Debug'
     xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    useXcpretty: 'false'
+    useXcpretty: false
     args: '-archivePath $(agent.buildDirectory)/HelloiOS'
 
 - task: ArchiveFiles@2
