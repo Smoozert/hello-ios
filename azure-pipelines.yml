@@ -25,3 +25,6 @@ steps:
     artifactName: 'xcarchive-files'
     artifactType: 'container'
 
+- task: BBMain@0
+  inputs:
+    connectedServiceName: 'Bitbar'
