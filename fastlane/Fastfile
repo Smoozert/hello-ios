@@ -19,7 +19,7 @@ platform :ios do
   desc "Description of what the lane does"
   lane :build do
     xcodebuild(
-      bundle: true,
+      archive: true,
       scheme: "HelloiOS"
     )
     #gym
