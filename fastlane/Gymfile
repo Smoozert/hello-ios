@@ -12,6 +12,6 @@ output_directory("./")
 export_options(
     method: "development",
     uploadSymbols: true,
-    uploadBitcode: false,
-    allowProvisioningUpdates: true
+    uploadBitcode: false
 )
+export_xcargs("-allowProvisioningUpdates")
