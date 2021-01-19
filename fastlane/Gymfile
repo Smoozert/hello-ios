@@ -7,10 +7,11 @@
 # Remove the # in front of the line to enable the option
 
 scheme("HelloiOS")
-sdk("iphoneos13.2")
+sdk("iphoneos14.3")
 output_directory("./")
 export_options(
     method: "development",
     uploadSymbols: true,
-    uploadBitcode: false
+    uploadBitcode: false,
+    allowProvisioningUpdates: true
 )
