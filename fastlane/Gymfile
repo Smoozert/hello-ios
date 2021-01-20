@@ -14,4 +14,3 @@ export_options(
     uploadSymbols: true,
     uploadBitcode: false
 )
-export_xcargs("-allowProvisioningUpdates")
