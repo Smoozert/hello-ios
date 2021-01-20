@@ -24,10 +24,11 @@ steps:
       bundle install
       
       bundle exec fastlane build ios
+    workingDirectory: "**/"
 
 - task: CopyFiles@1
   inputs:
-    SourceFolder: '/'
+    SourceFolder: '**/'
     Contents: 'HelloiOS.ipa'
     TargetFolder: '$(build.artifactStagingDirectory)/'
 
