@@ -2,29 +2,34 @@ pool:
   vmImage: 'macOS-10.14'
 
 steps:
-- task: Xcode@5
-  displayName: 'Build the app using Xcode'
-  inputs:
-    actions: 'clean build analyze archive'
-    sdk: 'iphoneos'
-    scheme: 'HelloiOS'
-    configuration: 'Debug'
-    xcWorkspacePath: '**/*.xcodeproj/project.xcworkspace'
-    useXcpretty: false
-    args: '-archivePath $(agent.buildDirectory)/HelloiOS'
 
-- task: ArchiveFiles@2
-  displayName: 'Package .xcarchive into a zip file'
+- task: UseRubyVersion@0
   inputs:
-    rootFolderOrFile: '$(agent.buildDirectory)/HelloiOS.xcarchive/'
-    archiveFile: '$(build.artifactStagingDirectory)/HelloiOS.xcarchive.zip'
+    versionSpec: '>= 2.4'
+
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'Identities.p12'
+    keychain: 'temp'
+
+- task: InstallAppleProvisioningProfile@1
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: '36ec1bf8-357b-439f-b1bb-0faacea2f5ce.HiOSStuart.mobileprovision'
+
+- script:
+    bundle install
+    bundle exec fastlane build ios
+  displayName: Run Fastlane
+
+- task: CopyFiles@1
+  inputs:
+    SourceFolder: '/'
+    Contents: 'HelloiOS.ipa'
+    TargetFolder: '$(build.artifactStagingDirectory)/'
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathToPublish: '$(build.artifactStagingDirectory)/HelloiOS.xcarchive.zip'
-    artifactName: 'xcarchive-files'
-    artifactType: 'container'
-
-- task: BBMain@0
-  inputs:
-    connectedServiceName: 'Bitbar'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/HelloiOS.ipa'
+    ArtifactName: 'HelloiOS.ipa'
+    publishLocation: 'Container'
