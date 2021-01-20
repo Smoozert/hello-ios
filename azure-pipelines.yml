@@ -25,7 +25,7 @@ steps:
 
       bundle install
       
-      bundle exec fastlane build ios
+      bundle exec fastlane ios build
 
 - task: CopyFiles@1
   inputs:
