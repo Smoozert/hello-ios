@@ -17,10 +17,13 @@ steps:
     provisioningProfileLocation: 'secureFiles'
     provProfileSecureFile: '36ec1bf8-357b-439f-b1bb-0faacea2f5ce.HiOSStuart.mobileprovision'
 
-- script:
-    bundle install
-    bundle exec fastlane build ios
-  displayName: Run Fastlane
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      bundle install
+      
+      bundle exec fastlane build ios
 
 - task: CopyFiles@1
   inputs:
