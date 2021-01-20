@@ -21,10 +21,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      ls
+
       bundle install
       
       bundle exec fastlane build ios
-    workingDirectory: "$(Build.Repository.LocalPath)/"
 
 - task: CopyFiles@1
   inputs:
