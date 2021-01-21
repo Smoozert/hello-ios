@@ -21,11 +21,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      ls
+      bundle update --bundler
 
       bundle install
       
-      bundle exec fastlane build ios
+      bundle exec fastlane ios build
 
 - task: CopyFiles@1
   inputs:
