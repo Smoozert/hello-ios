@@ -14,6 +14,7 @@
 # update_fastlane
 
 default_platform(:ios)
+xcversion(version: "~> 12.3.0")
 
 platform :ios do
   desc "Description of what the lane does"
